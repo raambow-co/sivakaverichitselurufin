@@ -405,11 +405,11 @@ button, input, select {
 
 .hero-layout-grid {
   display: grid;
-  grid-template-columns: 1.15fr 0.95fr;
-  gap: 40px;
-  align-items: center;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 32px;
+  align-items: flex-end;
   position: relative;
-  z-index: 1;
+  z-index: 10;
 }
 
 /* Left Hero */
@@ -551,30 +551,42 @@ button, input, select {
   color: #CBD5E1;
 }
 
-/* Right Hero: Hand Holding Smartphone Visual */
+/* Right Hero: Hand Holding Smartphone Visual - Corner Anchored with Zero Scissor Edge */
 .hero-right-visual {
   display: flex;
   align-items: flex-end;
-  justify-content: center;
+  justify-content: flex-end;
   position: relative;
-  max-height: 520px;
+  margin-bottom: -58px;
+  margin-right: -12px;
+  max-height: 560px;
+  z-index: 10;
 }
 
 .hand-mockup-img {
   width: 100%;
-  max-width: 460px;
+  max-width: 500px;
   height: auto;
-  max-height: 520px;
+  max-height: 560px;
   object-fit: contain;
   display: block;
-  filter: drop-shadow(0 20px 35px rgba(10, 25, 70, 0.3));
-  animation: floatHand 5s ease-in-out infinite;
-  transform-origin: bottom center;
+  filter: drop-shadow(0 25px 40px rgba(10, 25, 70, 0.35));
+  transform-origin: bottom right;
+  animation: subtleBreathing 7s ease-in-out infinite alternate;
+  mask-image: linear-gradient(to right, black calc(100% - 35px), rgba(0, 0, 0, 0.5) calc(100% - 10px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black calc(100% - 35px), rgba(0, 0, 0, 0.5) calc(100% - 10px), transparent 100%);
 }
 
-@keyframes floatHand {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+@keyframes subtleBreathing {
+  0% { transform: scale(1) rotate(0deg); }
+  100% { transform: scale(1.015) rotate(0.4deg); }
+}
+
+@media (max-width: 1200px) {
+  .hand-mockup-img {
+    max-width: 440px;
+    max-height: 500px;
+  }
 }
 
 /* ==========================================================================
@@ -582,7 +594,7 @@ button, input, select {
    ========================================================================== */
 .hero-dock-wrap {
   position: relative;
-  z-index: 20;
+  z-index: 25;
   margin-top: -46px;
   padding-bottom: 24px;
 }
@@ -1924,12 +1936,19 @@ button, input, select {
   }
   .hero-right-visual {
     order: 2;
-    margin-top: 10px;
-    max-height: 440px;
+    margin-top: 24px;
+    margin-bottom: -32px;
+    margin-right: 0;
+    max-height: 420px;
+    justify-content: center;
   }
   .hand-mockup-img {
-    max-width: 380px;
-    max-height: 440px;
+    max-width: 360px;
+    max-height: 420px;
+    margin: 0 auto;
+    transform-origin: bottom center;
+    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
   }
   .hero-dock-wrap {
     margin-top: -30px;
